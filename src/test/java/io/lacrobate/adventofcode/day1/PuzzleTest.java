@@ -1,13 +1,16 @@
 package io.lacrobate.adventofcode.day1;
 
+import io.lacrobate.adventofcode.common.InputReader;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import static java.util.List.of;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class PuzzleTest {
 
@@ -71,19 +74,24 @@ class PuzzleTest {
 		assertThat(result).isEqualTo(11);
 	}
 
+	@Test
+	@DisplayName("should XXX when I resolve for lists of different size")
+	public void whenITryResolveForListsOfDifferentSize() {
+		List<Integer> leftIds = List.of(2);
+		List<Integer> rightIds = List.of(5,5);
+		Puzzle puzzle = new Puzzle(leftIds, rightIds);
+		//    when
+		assertThrows(IllegalStateException.class,
+				() -> puzzle.resolve());
+	}
 
-//
-//	@Test
-//	@DisplayName("should XXX when I resolve for lists of different size")
-//	public void whenIResolveForListsOf6() {
-//		List<Integer> leftIds = List.of(2);
-//		List<Integer> rightIds = List.of(5);
-//		Puzzle puzzle = new Puzzle(leftIds, rightIds);
-//		//    when
-//		int result = puzzle.resolve();
-//
-//		//    then
-//		assertThat(result).isEqualTo(3);
-//	}
+	@Test
+	@DisplayName("should XXX when I YYY")
+	public void whenITryToXXX() throws IOException {
+		//    when
+		InputReader.read();
+		//    then
+		assertThat(false).isTrue();
+	}
 
 }

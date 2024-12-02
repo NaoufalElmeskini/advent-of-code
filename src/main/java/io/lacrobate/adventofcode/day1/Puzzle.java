@@ -54,6 +54,10 @@ public class Puzzle {
 
 	public int resolve() {
 		int distance = 0;
+		if (leftIds.size() != rightIds.size()) {
+			throw new IllegalStateException("wrong size man... wrong size");
+		}
+
 		Collections.sort(leftIds);
 		Collections.sort(rightIds);
 		for (int i = 0; i < leftIds.size(); i++) {
