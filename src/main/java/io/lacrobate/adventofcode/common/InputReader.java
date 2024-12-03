@@ -1,42 +1,27 @@
 package io.lacrobate.adventofcode.common;
 
+import io.lacrobate.adventofcode.day1.LocationList;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @Slf4j
 public class InputReader {
+	private static String INPUT_PATH = "src/main/resources";
+	private static String DELIMITER = "   ";
 
-	public static void read() throws IOException {
-		String inputPath = "src/main/resources";
-		Path directory = Paths.get(inputPath);
-		Path file = directory.resolve("input.txt");
+	public static LocationList read(String fileName) throws IOException {
+		Path directory = Paths.get(INPUT_PATH);
+		Path file = directory.resolve(fileName);
+		LocationList locations = new LocationList();
 
 		try (Stream<String> lines = Files.lines(file)) {
-			List<List<String>> records = lines.map(line -> {
-				log.info(line);
-				String delimiter = "   ";
-				return Arrays.asList(line.split(delimiter));
-			}).collect(Collectors.toList());
+			lines.forEach(line -> locations.enrichFrom(line, DELIMITER));
 		}
+		return locations;
 	}
-
-	//	public static String writeSoundBytesToGivenFile(byte[] bytes, String fileName) {
-	//		Path directory = Paths.get(INPUT_RESOURCES_PATH);
-	//		Path filePath = directory.resolve(fileName);
-	//		try {
-	//			Files.write(filePath, bytes, StandardOpenOption.CREATE_NEW);
-	//			System.out.printf("Saved %s to %s%n", fileName, INPUT_RESOURCES_PATH);
-	//			return fileName;
-	//		} catch (IOException e) {
-	//			throw new UncheckedIOException("Error writing audio to file", e);
-	//		}
-	//	}
 }

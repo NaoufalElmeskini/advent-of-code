@@ -1,10 +1,10 @@
 package io.lacrobate.adventofcode.day1;
 
+import io.lacrobate.adventofcode.common.InputReader;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
-import java.util.Collections;
-import java.util.List;
+import java.io.IOException;
 
 /**
  * --- Day 1: Historian Hysteria ---
@@ -49,20 +49,10 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Puzzle {
-	private List<Integer> leftIds;
-	private List<Integer> rightIds;
+	private String inputFileName;
 
-	public int resolve() {
-		int distance = 0;
-		if (leftIds.size() != rightIds.size()) {
-			throw new IllegalStateException("wrong size man... wrong size");
-		}
-
-		Collections.sort(leftIds);
-		Collections.sort(rightIds);
-		for (int i = 0; i < leftIds.size(); i++) {
-			distance += Math.abs(leftIds.get(i) - rightIds.get(i));
-		}
-		return distance;
+	public int resolve() throws IOException {
+		LocationList locations = InputReader.read(inputFileName);
+		return locations.calculateDistance();
 	}
 }
